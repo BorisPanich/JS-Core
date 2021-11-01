@@ -1,5 +1,5 @@
 import { multiply, splitItoWords, sum } from "./01"
-// npm test - start test
+// npm test - "start test"
 
 let a: number
 let b: number
@@ -35,10 +35,12 @@ test('multiply should be correct', () => {
     // Expect result
     expect(resultAB).toBe(2)
     expect(resultBC).toBe(6)
-
 })
 
 test('spliting into words should be correct', () => {
+    // test won't be run
+    // test.skip('spliting into words should be correct', () => {   
+
     // Data
     const sent1 = "Hello my Friend!"
     const sent2 = "JS - the best programming language"
