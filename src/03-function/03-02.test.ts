@@ -1,5 +1,5 @@
 import { CityType } from './../02/02-types';
-import { addMoneyToBudget, addSkill, doesStudentLiveIn } from './03';
+import { addMoneyToBudget, addSkill, createMessage, doesStudentLiveIn, repairHouse, toFireStaff, toHireStaff } from './03';
 
 let city: CityType;
 
@@ -97,6 +97,8 @@ test("Greeting message should be correct for the city", () => {
 
     expect(message).toBe("Hello New York citizens! All of 1000000 people.");
 });
+
+
 
 
 

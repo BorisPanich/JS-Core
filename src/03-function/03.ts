@@ -1,3 +1,4 @@
+import { CityType } from './../02/02-types';
 import { StudentsType } from "../02/02"
 import { GovernmentBuildingsType, HousesType } from "../02/02-types"
 
@@ -16,6 +17,19 @@ export function addMoneyToBudget(building: GovernmentBuildingsType, budget: numb
     return building.budget += budget
 }
 
-export function repairHouse(arg0: HousesType) {
-    return
+export function repairHouse(houses: HousesType) {
+    return houses.repaired = true
+}
+
+export const toFireStaff = (governmentBuildings: GovernmentBuildingsType, stuffCounterToFire: number) => {
+    governmentBuildings.staffCount -= stuffCounterToFire
+}
+
+export const toHireStaff = (governmentBuildings: GovernmentBuildingsType, stuffCounterToHire: number) => {
+    governmentBuildings.staffCount += stuffCounterToHire
+}
+
+export const createMessage = (props: CityType) => {
+    // return "Hello " + props.title + " citizens! All of " + props.citizensNumber + " people."
+    return `Hello ${props.title} citizens! All of ${props.citizensNumber} people.`
 }
