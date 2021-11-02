@@ -25,6 +25,17 @@ beforeEach(() => {
                         title: "Happy street",
                     }
                 }
+            },
+            {
+                id: 3,
+                buildedAt: 2020,
+                repaired: false,
+                address: {
+                    number: 101,
+                    street: {
+                        title: "Happy street",
+                    }
+                }
             }
         ],
         governmentBuildings: [

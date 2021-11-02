@@ -11,6 +11,11 @@ beforeEach(() => {
     c = 3
 })
 
+// test won't be run
+// test.skip('spliting into words should be correct', () => {
+// test panding
+// test.todo("...", () => {...})
+
 test('sum should be correct', () => {
     // Data
     const a = 100
@@ -38,9 +43,6 @@ test('multiply should be correct', () => {
 })
 
 test('spliting into words should be correct', () => {
-    // test won't be run
-    // test.skip('spliting into words should be correct', () => {   
-
     // Data
     const sent1 = "Hello my Friend!"
     const sent2 = "JS - the best programming language"
