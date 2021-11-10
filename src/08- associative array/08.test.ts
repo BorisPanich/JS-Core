@@ -17,7 +17,7 @@ beforeEach(() => {
 test("should update corresponding user", () => {
     users['36'].name = 'Borya';
 
-    expect(users['36'].name).toBe('Boris')
+    expect(users['36'].name).toBe('Borya')
     // expect(users['36']).toBe({ id: 36, name: 'Borya' })
     // expect(users['36']).toEqual({ id: 36, name: 'Borya' })
 })
