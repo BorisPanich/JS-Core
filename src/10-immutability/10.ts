@@ -4,10 +4,13 @@ export type UserType = {
     address: { city: string, house?: number }
 }
 export type NetbookType = {
-    title: string
+    model: string
 }
 export type UserWithNetbookType = UserType & {
     netbook: NetbookType
+}
+export type UserWithBooksType = UserType & {
+    books: Array<string>
 }
 
 
@@ -35,3 +38,39 @@ export const moveUser = (u: UserWithNetbookType, city: string) => {
         }
     }
 }
+
+
+export function updatedUserNetbook(u: UserWithNetbookType, netbook: string) {
+    return {
+        ...u,
+        netbook: {
+            ...u.netbook,
+            model: netbook
+        }
+    }
+}
+export function updatedUserHouse(u: UserWithNetbookType & UserWithBooksType, house: number) {
+    return {
+        ...u,
+        address: {
+            ...u.address,
+            house: house
+        }
+    }
+}
+
+
+export function updatedUserBooks(u: UserWithNetbookType & UserWithBooksType, newBooks: string) {
+    return {
+        ...u,
+        // если скопировать и добавить элемент
+        books: [...u.books, newBooks]
+    }
+}
+export const updatedBooksToUser = (u: UserWithNetbookType & UserWithBooksType,
+    oldBook: string,
+    newBook: string) => ({
+        ...u,
+        // если нужно только заменить элемент
+        books: u.books.map(b => b === oldBook ? newBook : b)
+    })
