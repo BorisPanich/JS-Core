@@ -12,6 +12,10 @@ export type UserWithNetbookType = UserType & {
 export type UserWithBooksType = UserType & {
     books: Array<string>
 }
+type CompanyType = { id: number, title: string }
+export type WithCompaniesType = {
+    companies: Array<CompanyType>
+}
 
 
 export const makeHairStyle = (u: UserType, power: number) => {
@@ -74,3 +78,32 @@ export const updatedBooksToUser = (u: UserWithNetbookType & UserWithBooksType,
         // если нужно только заменить элемент
         books: u.books.map(b => b === oldBook ? newBook : b)
     })
+
+export const removeBook = (u: UserWithNetbookType & UserWithBooksType,
+    bookForDelete: string) => ({
+        ...u,
+        // если нужно только удалить элемент
+        books: u.books.filter(b => b !== bookForDelete)
+    })
+
+
+export const updateCompanieTitle = (u: WithCompaniesType,
+    companyId: number,
+    newTitle: string) => ({
+        ...u,
+        companies: u.companies.map(c => c.id === companyId
+            ? { ...c, title: newTitle }
+            : c)
+    })
+
+
+export const updateCompanieTitle2 = (companies: { [keys: string]: Array<CompanyType> },
+    userName: string,
+    companyId: number,
+    newTitle: string) => {
+    let companyCopy = { ...companies }
+    companyCopy[userName] = companyCopy[userName].map(c => c.id === companyId
+        ? { ...c, title: newTitle }
+        : c)
+    return companyCopy
+}

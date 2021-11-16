@@ -1,4 +1,4 @@
-import { makeHairStyle, moveUser, updatedBooksToUser, updatedUserBooks, updatedUserHouse, updatedUserNetbook, UserType, UserWithBooksType, UserWithNetbookType } from './10';
+import { makeHairStyle, moveUser, removeBook, updateCompanieTitle, updateCompanieTitle2, updatedBooksToUser, updatedUserBooks, updatedUserNetbook, UserType, UserWithBooksType, UserWithNetbookType, WithCompaniesType } from './10';
 
 test('reference type test', () => {
     let user: UserType = {
@@ -90,4 +90,70 @@ test('added new books to user', () => {
     expect(updatedUser.books.length).toBe(5)
     expect(updatedBooks.books.length).toBe(4)
     // expect(updatedUser.books[5]).toBe('redux')
+})
+
+
+test.only('remove book to js', () => {
+    let user: UserWithNetbookType & UserWithBooksType = {
+        name: 'Boris',
+        hair: 22,
+        address: {
+            city: 'Lida',
+            house: 34
+        },
+        netbook: {
+            model: 'ZenBook'
+        },
+        books: ['css', 'html', 'js', 'react']
+    }
+
+    const updatedUser = removeBook(user, 'js')
+
+    expect(user).not.toBe(updatedUser)
+    expect(user.address).toBe(updatedUser.address)
+    expect(user.netbook).toBe(updatedUser.netbook)
+    expect(user.books).not.toBe(updatedUser.books)
+    expect(updatedUser.books[2]).toBe('react')
+    expect(updatedUser.books.length).toBe(3)
+})
+
+
+test.only('update company', () => {
+    let user: UserWithNetbookType & WithCompaniesType = {
+        name: 'Boris',
+        hair: 22,
+        address: {
+            city: 'Lida',
+            house: 34
+        },
+        netbook: {
+            model: 'ZenBook'
+        },
+        companies: [
+            { id: 1, title: 'Dialek' },
+            { id: 2, title: 'BMP' }
+        ]
+    }
+
+    const updateUser = updateCompanieTitle(user, 2, 'Google') as UserWithNetbookType & WithCompaniesType
+
+    expect(user).not.toBe(updateUser)
+    expect(user.address).toBe(updateUser.address)
+    expect(user.companies).not.toBe(updateUser.companies)
+    expect(updateUser.companies[1].title).toBe('Google')
+})
+
+
+test.only('update company 2', () => {
+
+    let companies = {
+        'Boris': [{ id: 1, title: 'Dialek' }, { id: 2, title: 'BMP' }],
+        'Olga': [{ id: 1, title: 'BMP' }]
+    }
+
+    const updateUser = updateCompanieTitle2(companies, 'Boris', 2, 'Google')
+
+    expect(updateUser['Boris']).not.toBe(companies['Boris'])
+    expect(updateUser['Olga']).toBe(companies['Olga'])
+    expect(updateUser['Boris'][1].title).toBe('Google')
 })
